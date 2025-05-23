@@ -6,6 +6,6 @@ public class CPTAidan{
 		con.println("Enter a word");
 		String strWord = con.readLine();
 		String strLetter = strWord.substring(0,1);
-		con.println("The first letter is");
+		con.println("The first letter is: "+strLetter);
 	}
 }

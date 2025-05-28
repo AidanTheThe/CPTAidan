@@ -10,9 +10,9 @@ public class CPTAidan{
 	
 	// Main Menu
 	public static void menu(Console con){
-		con.println("Type 1 to Play Game");
-		con.println("Type 2 to View Leaderboard");
-		con.println("Type 3 to Add Theme");
-		con.println("Type 4 to Quit");
+		con.println("Type P to Play Game");
+		con.println("Type V to View Leaderboard");
+		con.println("Type A to Add Theme");
+		con.println("Type Q to Quit");
 	}
 }

@@ -14,5 +14,6 @@ public class CPTAidan{
 		con.println("Type V to View Leaderboard");
 		con.println("Type A to Add Theme");
 		con.println("Type Q to Quit");
+		con.println("Type H for Help");
 	}
 }

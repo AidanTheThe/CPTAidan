@@ -6,6 +6,8 @@ public class CPTAidan{
 		CPTAidanTools.mainMenu(con);
 		System.out.println("Menu Loaded");
 		String strModeInput;
+		String strMode;
 		strModeInput = con.readLine();
+		strMode = strModeInput.substring(0,1);
 	}
 }

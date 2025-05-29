@@ -29,6 +29,11 @@ public class CPTAidanTools{
 		con.println("We haven't gotten a gig yet");
 		con.println("\nWhy do programmers prefer dark mode?");
 		con.println("Because light attracts bugs!");
+		con.println("\nType R to Return to the Main Menu");
+	}
+	// Theme Screen
+	public static void themeScreen(Console con){
+		con.println("Select a theme");
 	}
 	
 	// Hangman Drawings 1-7

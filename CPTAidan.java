@@ -4,7 +4,6 @@ public class CPTAidan{
 	public static void main(String[] args){
 		Console con = new Console("Hangman", 1280, 720);
 		CPTAidanTools.mainMenu(con);
-		System.out.println("Menu Loaded");
 		boolean blnGameOver;
 		blnGameOver = false;
 		String strMode;

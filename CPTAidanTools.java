@@ -10,6 +10,7 @@ public class CPTAidanTools{
 		con.println("Type A to Add Theme");
 		con.println("Type Q to Quit");
 		con.println("Type H for Help");
+		System.out.println("Menu Loaded");
 	}
 	// Help Screen
 	public static void helpScreen(Console con){

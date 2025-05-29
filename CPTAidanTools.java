@@ -45,7 +45,7 @@ public class CPTAidanTools{
 		con.println("    |");
 		con.println("    |");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 2: Head
 	public static void drawing2(Console con){
@@ -55,7 +55,7 @@ public class CPTAidanTools{
 		con.println("    |");
 		con.println("    |");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 3: Head + Body
 	public static void drawing3(Console con){
@@ -75,17 +75,17 @@ public class CPTAidanTools{
 		con.println("    |         \\|");
 		con.println("    |");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 5: Head + Body + Arms
 	public static void drawing5(Console con){
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
-		con.println("    |        \\|/");
+		con.println("    |         \\|/");
 		con.println("    |");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 6: Head + Body + Arms + Left Leg
 	public static void drawing6(Console con){
@@ -95,7 +95,7 @@ public class CPTAidanTools{
 		con.println("    |         \\|/");
 		con.println("    |         /");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 7: Head + Body + Arms + Legs
 	public static void drawing7(Console con){
@@ -105,6 +105,6 @@ public class CPTAidanTools{
 		con.println("    |         \\|/");
 		con.println("    |         / \\");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 }

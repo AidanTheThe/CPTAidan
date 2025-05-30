@@ -8,12 +8,14 @@ public class CPTAidan{
 		blnGameOver = false;
 		String strTheme;
 		String strWordTemp;
-		int intNumTemp;
+		String strNumTemp;
+		int intRand;
 		int intWordCount = 0;
 		String strName;
 		String strMode;
 		strMode = con.readLine();
 		int intCount;
+		int intCount2;
 		
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
@@ -42,8 +44,25 @@ public class CPTAidan{
 				// with a corresponding random integer from 1 - 100
 				for(intCount = 0; intCount < intWordCount; intCount++){
 					strWords[intCount][0] = theme.readLine();
-					intNumTemp = (int)(Math.random() * 100 + 1);
+					intRand = (int)(Math.random() * 100 + 1);
+					strWords[intCount][1] = intRand + "";
 				}
+				// bubble sort the rows from least to greatest
+				for(intCount2 = 0; intCount < intWordCount - 1; intCount++){
+					for(intCount = 0; intCount < intWordCount; intCount++){
+						if(Integer.parseInt(strWords[intCount][1]) > Integer.parseInt(strWords[intCount+1][1])){
+							// swapping strings in row 0
+							strWordTemp = strWords[intCount][0];
+							strWords[intCount][0] = strWords[intCount+1][0];
+							strWords[intCount+1][0] = strWordTemp;
+							// swapping integers in row 1
+							strNumTemp = strWords[intCount][1];
+							strWords[intCount][1] = strWords[intCount+1][1];
+							strWords[intCount+1][1] = strNumTemp;
+						}
+					}
+				}
+				
 			}else if(strMode.equalsIgnoreCase("v")){
 				//print leaderboard
 			}else if(strMode.equalsIgnoreCase("a")){

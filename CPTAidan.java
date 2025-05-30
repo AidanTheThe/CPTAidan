@@ -6,12 +6,15 @@ public class CPTAidan{
 		CPTAidanTools.mainMenu(con);
 		boolean blnGameOver;
 		blnGameOver = false;
+		String strTheme;
 		String strMode;
 		strMode = con.readLine();
 		while(blnGameOver == false){
 			if(strMode.equalsIgnoreCase("p")){
-				CPTAidanTools.drawing1(con);
-				blnGameOver = true;
+				CPTAidanTools.clearScreen(con);
+				CPTAidanTools.themeScreen(con);
+				strTheme = con.readLine();
+				System.out.println(strTheme);
 			}else if(strMode.equalsIgnoreCase("v")){
 				//print leaderboard
 			}else if(strMode.equalsIgnoreCase("a")){

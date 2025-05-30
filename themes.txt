@@ -1,3 +1,7 @@
-Food.txt
-School.txt
-Games.txt
+food.txt
+school.txt
+videogames.txt
+superheroes.txt
+animals.txt
+movies.txt
+geography.txt

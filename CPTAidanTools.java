@@ -2,7 +2,7 @@ import arc.*;
 
 public class CPTAidanTools{
 	
-	// Assistance Screens/Menus
+	// Screens/Menus
 	// Main Menu
 	public static void mainMenu(Console con){
 		con.println("Type P to Play Game");
@@ -12,6 +12,13 @@ public class CPTAidanTools{
 		con.println("Type H for Help");
 		System.out.println("Menu Loaded");
 	}
+	// Clear Screen
+	public static void skipThree(Console con){
+		int intCount;
+		for(intCount = 1; intCount <= 3; intCount++){
+			con.println("");
+		}
+	}
 	// Help Screen
 	public static void helpScreen(Console con){
 		con.println("Help");
@@ -20,6 +27,7 @@ public class CPTAidanTools{
 		con.println("Guess the word by typing it out and pressing Enter");
 		con.println("For every wrong guess, a new random letter is revealed and a body part is added to the stickman");
 		con.println("The goal is to guess the word before the stickman is fully drawn");
+		con.println("Some answers are tricky and a combination of more than one word");
 		con.println("\nType R to Return to the Main Menu");
 	}
 	// Secret Menu
@@ -34,7 +42,13 @@ public class CPTAidanTools{
 	}
 	// Theme Screen
 	public static void themeScreen(Console con){
-		con.println("Select a theme");
+		con.println("Select a theme:");
+		TextInputFile themes = new TextInputFile("themes.txt");
+		String strTheme;
+		while(themes.eof() == false){
+			strTheme = themes.readLine();
+			con.println(strTheme);
+		}
 	}
 	
 	// Hangman Drawings 1-7

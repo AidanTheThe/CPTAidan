@@ -6,7 +6,6 @@ Dolphin
 Cockroach
 Alligator
 Leopard
-Cougar
 Rattlesnake
 Chicken
 Rhinoceros

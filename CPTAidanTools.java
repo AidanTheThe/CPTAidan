@@ -12,13 +12,6 @@ public class CPTAidanTools{
 		con.println("Type H for Help");
 		System.out.println("Menu Loaded");
 	}
-	// Clear Screen
-	public static void skipThree(Console con){
-		int intCount;
-		for(intCount = 1; intCount <= 3; intCount++){
-			con.println("");
-		}
-	}
 	// Help Screen
 	public static void helpScreen(Console con){
 		con.println("Help");

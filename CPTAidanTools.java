@@ -43,6 +43,33 @@ public class CPTAidanTools{
 			con.println(strTheme);
 		}
 	}
+	// Clear Screen
+	public static void clearScreen(Console con){
+		int intCount;
+		for(intCount = 0; intCount < 30; intCount++){
+			con.println("");
+		}
+	}
+	
+	// Win Screen
+	public static void winScreen(Console con){
+		con.println("You win!");
+		con.println("\nPlay Again?");
+		con.println("Yes or No");
+	}
+	
+	// Lose Screen
+	public static void loseScreen(Console con){
+		con.println("You lose");
+		con.println("\nPlay Again?");
+		con.println("Yes or No");
+	}
+	
+	// No More Words Screen
+	public static void noWordsScreen(Console con){
+		con.println("There are no more words left");
+		con.println("Returning to Main Menu");
+	}
 	
 	// Hangman Drawings 1-7
 	// Drawing 1: No body

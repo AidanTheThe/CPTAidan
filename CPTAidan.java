@@ -3,19 +3,20 @@ import arc.*;
 public class CPTAidan{
 	public static void main(String[] args){
 		Console con = new Console("Hangman", 1280, 720);
+		// load main menu
 		CPTAidanTools.mainMenu(con);
+		// create/initialize variables
 		boolean blnGameOver;
 		blnGameOver = false;
 		boolean blnPlayAgain;
 		blnPlayAgain = true;
+		String strPlayAgain;
 		String strTheme;
 		String strWordTemp;
 		String strNumTemp;
 		String strLetterTemp;
 		String strPositionTemp;
 		String strRandomTemp;
-		String strTempPosition;
-		String strTempLetter;
 		int intCount;
 		int intCount2;
 		int intRand;
@@ -24,6 +25,7 @@ public class CPTAidan{
 		String strMode;
 		strMode = con.readLine();
 		String strWord;
+		String strGuess;
 		int intWordNum = 0;
 		
 		// While loop that encases all code excluding startup menu and some variables
@@ -38,6 +40,7 @@ public class CPTAidan{
 				strTheme = con.readLine();
 				strTheme = strTheme + ".txt";
 				System.out.println(strTheme);
+				
 				// Counting how many words are in the theme file
 				TextInputFile theme = new TextInputFile(strTheme);
 				while(theme.eof() == false){
@@ -46,6 +49,7 @@ public class CPTAidan{
 				}
 				// close text file
 				theme.close();
+				
 				// create array and reopen text file
 				String strWords[][];
 				strWords = new String[intWordCount][2];
@@ -57,21 +61,23 @@ public class CPTAidan{
 					intRand = (int)(Math.random() * 100 + 1);
 					strWords[intCount][1] = intRand + "";
 				}
-				// bubble sort the rows from least to greatest
-				for(intCount2 = 0; intCount < intWordCount - 1; intCount++){
-					for(intCount = 0; intCount < intWordCount; intCount++){
+				
+				// bubble sort the rows from least to greatest			
+				for(intCount2 = 0; intCount2 < intWordCount - 1; intCount2++){
+					for(intCount = 0; intCount < intWordCount - 1; intCount++){
 						if(Integer.parseInt(strWords[intCount][1]) > Integer.parseInt(strWords[intCount+1][1])){
-							// swapping strings in row 0
+							// swap words
 							strWordTemp = strWords[intCount][0];
 							strWords[intCount][0] = strWords[intCount+1][0];
 							strWords[intCount+1][0] = strWordTemp;
-							// swapping integers in row 1
+							// swap numbers
 							strNumTemp = strWords[intCount][1];
 							strWords[intCount][1] = strWords[intCount+1][1];
 							strWords[intCount+1][1] = strNumTemp;
 						}
 					}
 				}
+							
 				// select a word and run game
 				// unless the player inputs they do not want to play
 				while(blnPlayAgain == true){
@@ -86,13 +92,15 @@ public class CPTAidan{
 						strLetters = new String[intWordLength][3];
 						for(intCount = 0; intCount < intWordLength; intCount++){
 							strLetters[intCount][0] = strWord.substring(intCount, intCount+1);
-							strLetters[intCount][1] = intCount + "";
+							strLetters[intCount][1] = intCount + 1 + "";
 							intRand = (int)(Math.random() * 100 + 1);
 							strLetters[intCount][2] = intRand + "";
 						}
+						
 						// bubble sort the rows from least to greatest
-						for(intCount2 = 0; intCount < intWordLength - 1; intCount2++){
-							for(intCount = 0; intCount < intWordLength; intCount++){
+						
+						for(intCount2 = 0; intCount2 < intWordLength - 1; intCount2++){
+							for(intCount = 0; intCount < intWordLength - 1; intCount++){
 								if(Integer.parseInt(strLetters[intCount][2]) > Integer.parseInt(strLetters[intCount+1][2])){
 									// swapping letters in row 0
 									strLetterTemp = strLetters[intCount][0];
@@ -104,11 +112,12 @@ public class CPTAidan{
 									strLetters[intCount+1][1] = strPositionTemp;
 									// swapping random numbers in row 2
 									strRandomTemp = strLetters[intCount][2];
-									strLetters[intCount][2] = strLetters[intCount+1][0];
+									strLetters[intCount][2] = strLetters[intCount+1][2];
 									strLetters[intCount+1][2] = strRandomTemp;
 								}
 							}
 						}
+						
 						int intWrongCount;
 						for(intWrongCount = 0; intWrongCount <= 6; intWrongCount++){
 							if(intWrongCount == 0){
@@ -127,9 +136,25 @@ public class CPTAidan{
 								CPTAidanTools.drawing7(con);
 							}
 							con.println("");
-							for(intCount = 0; intCount < intWordLength; intCount++){
+							for(intCount = 1; intCount <= intWordLength; intCount++){
 								for(intCount2 = 0; intCount2 < intWordLength; intCount2++){
+									if(Integer.parseInt(strLetters[intCount2][1]) == intCount){
+										if(intCount2 <= intWrongCount - 1){
+											con.print(strLetters[intCount2][0] + " ");
+										}else if(intCount2 > intWrongCount - 1){
+											con.print("_ ");
+										}
+									}
 								}
+							}
+							con.println("");
+							con.println("");
+							con.println("");
+							con.println("What is your guess?");
+							strGuess = con.readLine();
+							if(strGuess.equalsIgnoreCase(strWord)){
+								CPTAidanTools.winScreen(con);
+								strPlayAgain = con.readLine();
 							}
 						}
 						// print "_ " if the row number > intCount

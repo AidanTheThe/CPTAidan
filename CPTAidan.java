@@ -9,13 +9,18 @@ public class CPTAidan{
 		String strTheme;
 		String strWordTemp;
 		String strNumTemp;
+		String strLetterTemp;
+		String strPositionTemp;
+		String strRandomTemp;
+		int intCount;
+		int intCount2;
 		int intRand;
 		int intWordCount = 0;
 		String strName;
 		String strMode;
 		strMode = con.readLine();
-		int intCount;
-		int intCount2;
+		String strWord;
+		int intWordNum = 0;
 		
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
@@ -27,6 +32,7 @@ public class CPTAidan{
 				CPTAidanTools.themeScreen(con);
 				con.println("");
 				strTheme = con.readLine();
+				strTheme = strTheme + ".txt";
 				System.out.println(strTheme);
 				// Counting how many words are in the theme file
 				TextInputFile theme = new TextInputFile(strTheme);
@@ -62,7 +68,41 @@ public class CPTAidan{
 						}
 					}
 				}
-				
+				for(intWordNum = 0; intWordNum < intWordCount; intWordNum++){
+					// choosing a word
+					strWord = strWords[intWordNum][0];
+					// measuring the length of the word
+					int intWordLength;
+					intWordLength = strWord.length();
+					// loading each letter into an array
+					String strLetters[][];
+					strLetters = new String[intWordLength][3];
+					for(intCount = 0; intCount < intWordLength; intCount++){
+						strLetters[intCount][0] = strWord.substring(intCount, intCount+1);
+						strLetters[intCount][1] = intCount + "";
+						intRand = (int)(Math.random() * 100 + 1);
+						strLetters[intCount][2] = intRand + "";
+					}
+					// bubble sort the rows from least to greatest
+					for(intCount2 = 0; intCount < intWordLength - 1; intCount2++){
+						for(intCount = 0; intCount < intWordLength; intCount++){
+							if(Integer.parseInt(strLetters[intCount][2]) > Integer.parseInt(strLetters[intCount+1][2])){
+								// swapping letters in row 0
+								strLetterTemp = strLetters[intCount][0];
+								strLetters[intCount][0] = strLetters[intCount+1][0];
+								strLetters[intCount+1][0] = strLetterTemp;
+								// swapping position numbers in row 1
+								strPositionTemp = strLetters[intCount][1];
+								strLetters[intCount][1] = strLetters[intCount+1][1];
+								strLetters[intCount+1][1] = strPositionTemp;
+								// swapping random numbers in row 2
+								strRandomTemp = strLetters[intCount][2];
+								strLetters[intCount][2] = strLetters[intCount+1][0];
+								strLetters[intCount+1][2] = strRandomTemp;
+							}
+						}
+					}
+				}
 			}else if(strMode.equalsIgnoreCase("v")){
 				//print leaderboard
 			}else if(strMode.equalsIgnoreCase("a")){

@@ -1,6 +1,6 @@
-food.txt
-school.txt
-superheroes.txt
-animals.txt
-movies.txt
-geography.txt
+food
+school
+superheroes
+animals
+movies
+geography

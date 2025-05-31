@@ -37,11 +37,14 @@ public class CPTAidanTools{
 	public static void themeScreen(Console con){
 		con.println("Select a theme:");
 		TextInputFile themes = new TextInputFile("themes.txt");
+		System.out.println("Opened themes.txt");
 		String strTheme;
 		while(themes.eof() == false){
 			strTheme = themes.readLine();
 			con.println(strTheme);
 		}
+		themes.close();
+		System.out.println("Closed themes.txt");
 	}
 	// Clear Screen
 	public static void clearScreen(Console con){
@@ -53,14 +56,14 @@ public class CPTAidanTools{
 	
 	// Win Screen
 	public static void winScreen(Console con){
-		con.println("You win!");
+		con.println("\nYou win!");
 		con.println("\nPlay Again?");
 		con.println("Yes or No");
 	}
 	
 	// Lose Screen
 	public static void loseScreen(Console con){
-		con.println("You lose");
+		con.println("\nYou lose");
 		con.println("\nPlay Again?");
 		con.println("Yes or No");
 	}

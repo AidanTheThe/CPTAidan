@@ -32,6 +32,7 @@ public class CPTAidan{
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
 			if(strMode.equalsIgnoreCase("p")){
+				
 				// User inputs name and selects theme
 				con.println("\nEnter your name");
 				strName = con.readLine();
@@ -62,6 +63,8 @@ public class CPTAidan{
 					intRand = (int)(Math.random() * 100 + 1);
 					strWords[intCount][1] = intRand + "";
 				}
+				// close text file
+				theme.close();
 				
 				// bubble sort the rows from least to greatest			
 				for(intCount2 = 0; intCount2 < intWordCount - 1; intCount2++){

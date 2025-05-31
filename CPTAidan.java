@@ -11,6 +11,7 @@ public class CPTAidan{
 		boolean blnPlayAgain;
 		blnPlayAgain = true;
 		String strPlayAgain;
+		int intWins = 0;
 		String strTheme;
 		String strWordTemp;
 		String strNumTemp;
@@ -119,7 +120,9 @@ public class CPTAidan{
 						}
 						
 						int intWrongCount;
+						// loop for each round of the game
 						for(intWrongCount = 0; intWrongCount <= 6; intWrongCount++){
+							// print hangman drawing
 							if(intWrongCount == 0){
 								CPTAidanTools.drawing1(con);
 							}else if(intWrongCount == 1){
@@ -136,6 +139,9 @@ public class CPTAidan{
 								CPTAidanTools.drawing7(con);
 							}
 							con.println("");
+							// since the letters are in a random order
+							// this loop will reveal one random letter
+							// for everytime the guesses the word wrong
 							for(intCount = 1; intCount <= intWordLength; intCount++){
 								for(intCount2 = 0; intCount2 < intWordLength; intCount2++){
 									if(Integer.parseInt(strLetters[intCount2][1]) == intCount){
@@ -152,20 +158,44 @@ public class CPTAidan{
 							con.println("");
 							con.println("What is your guess?");
 							strGuess = con.readLine();
+							
+							// if the player guesses the correct word
+							// show the win screen
 							if(strGuess.equalsIgnoreCase(strWord)){
 								CPTAidanTools.winScreen(con);
+								intWins = intWins + 1;
 								strPlayAgain = con.readLine();
+								// if the player does not want to play again
+								// return to the main menu
+								if(strPlayAgain.equalsIgnoreCase("no")){
+									blnPlayAgain = false;
+									strMode = "r";
+								}
 							}
 						}
-						// print "_ " if the row number > intCount
-						// print the letter if the row number < intCount
-						// ask if the player wants to play again
-						// if they choose yes, the loop starts again
-						// if they choose no, blnPlayAgain = false, while loop ends, strMode = r
+						// if they do not guess correctly after 6 attempts
+						// and the hangman is fully drawn
+						// show the lose screen
+						if(blnPlayAgain == true){
+							CPTAidanTools.loseScreen(con);
+							strPlayAgain = con.readLine();
+							// if the player does not want to play again
+							// return to the main menu
+							if(strPlayAgain.equalsIgnoreCase("no")){
+								blnPlayAgain = false;
+								strMode = "r";
+							}
+						}
 					}
-					// if blnPlayAgain = true
-					// print no more words left message
-					// blnPlayAgain = false, prompt user to type r to return to main menu
+					
+					// if there are no more words in the array
+					// show the no more words screen
+					// return to main menu
+					if(blnPlayAgain = true){
+						CPTAidanTools.noWordsScreen(con);
+						blnPlayAgain = false;
+						strMode = "r";
+					}
 				}
 			}else if(strMode.equalsIgnoreCase("v")){
 				//print leaderboard

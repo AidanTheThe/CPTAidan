@@ -15,23 +15,28 @@ public class CPTAidanTools{
 	// Help Screen
 	public static void helpScreen(Console con){
 		con.println("Help");
-		con.println("\nHow To Play");
+		con.println("");
+		con.println("How To Play");
 		con.println("Each line represents a missing letter");
 		con.println("Guess the word by typing it out and pressing Enter");
 		con.println("For every wrong guess, a new random letter is revealed and a body part is added to the stickman");
 		con.println("The goal is to guess the word before the stickman is fully drawn");
 		con.println("Some answers are tricky and a combination of more than one word");
-		con.println("\nType R to Return to the Main Menu");
+		con.println("");
+		con.println("Type R to Return to the Main Menu");
 	}
 	// Secret Menu
 	public static void secretMenu(Console con){
 		con.println("I asked the IT guy, 'how do you make a motherboard?'");
 		con.println("He said, 'I tell her about my job.'");
-		con.println("\nI started a band called 999 Megabytes");
+		con.println("");
+		con.println("I started a band called 999 Megabytes");
 		con.println("We haven't gotten a gig yet");
-		con.println("\nWhy do programmers prefer dark mode?");
+		con.println("");
+		con.println("Why do programmers prefer dark mode?");
 		con.println("Because light attracts bugs!");
-		con.println("\nType R to Return to the Main Menu");
+		con.println("");
+		con.println("Type R to Return to the Main Menu");
 	}
 	// Theme Screen
 	public static void themeScreen(Console con){
@@ -56,15 +61,21 @@ public class CPTAidanTools{
 	
 	// Win Screen
 	public static void winScreen(Console con){
-		con.println("\nYou win!");
-		con.println("\nPlay Again?");
+		con.println("");
+		con.println("You Win!");
+		con.println("");
+		con.println("Play Again?");
 		con.println("Yes or No");
 	}
 	
 	// Lose Screen
-	public static void loseScreen(Console con){
-		con.println("\nYou lose");
-		con.println("\nPlay Again?");
+	public static void loseScreen(Console con, String strWord){
+		con.println("");
+		con.println("You Lose");
+		con.println("");
+		con.println("The word was: "+strWord);
+		con.println("");
+		con.println("Play Again?");
 		con.println("Yes or No");
 	}
 	
@@ -77,6 +88,7 @@ public class CPTAidanTools{
 	// Hangman Drawings 1-7
 	// Drawing 1: No body
 	public static void drawing1(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |");
@@ -87,6 +99,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 2: Head
 	public static void drawing2(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
@@ -97,6 +110,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 3: Head + Body
 	public static void drawing3(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
@@ -107,6 +121,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 4: Head + Body + Left Arm
 	public static void drawing4(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
@@ -117,6 +132,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 5: Head + Body + Arms
 	public static void drawing5(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
@@ -127,6 +143,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 6: Head + Body + Arms + Left Leg
 	public static void drawing6(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");
@@ -137,6 +154,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 7: Head + Body + Arms + Legs
 	public static void drawing7(Console con){
+		con.println("");
 		con.println("    /----------|");
 		con.println("    |          |");
 		con.println("    |          O");

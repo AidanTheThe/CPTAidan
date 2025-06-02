@@ -155,6 +155,7 @@ public class CPTAidan{
 								}
 							}
 						}
+						con.println("("+intWordLength+" letters)");
 						con.println("");
 						con.println("");
 						con.println("");
@@ -169,7 +170,7 @@ public class CPTAidan{
 							intWins = intWins + 1;
 							intWrongCount = 0;
 							System.out.println("WINS: "+intWins);
-							CPTAidanTools.winScreen(con);
+							CPTAidanTools.winScreen(con, intWordNum, intWordCount);
 							strPlayAgain = con.readLine();
 							// if the player does not want to play again
 							// return to the main menu
@@ -188,7 +189,7 @@ public class CPTAidan{
 					if(intWrongCount == 6 && blnGameplayOn == true){
 						CPTAidanTools.drawing6(con);
 						// and show the lose screen
-						CPTAidanTools.loseScreen(con, strWord);
+						CPTAidanTools.loseScreen(con, strWord, intWordNum, intWordCount);
 						strPlayAgain = con.readLine();
 						// if the player does not want to play again
 						// return to the main menu

@@ -60,29 +60,35 @@ public class CPTAidanTools{
 	}
 	
 	// Win Screen
-	public static void winScreen(Console con){
+	public static void winScreen(Console con, int intWordNum, int intWordCount){
 		con.println("");
 		con.println("You Win!");
 		con.println("");
-		con.println("Play Again?");
-		con.println("Yes or No");
+		if(intWordNum < intWordCount - 1){
+			con.println("Play Again?");
+			con.println("Yes or No");
+		}
 	}
 	
 	// Lose Screen
-	public static void loseScreen(Console con, String strWord){
+	public static void loseScreen(Console con, String strWord, int intWordNum, int intWordCount){
 		con.println("");
 		con.println("You Lose");
 		con.println("");
 		con.println("The word was: "+strWord);
 		con.println("");
-		con.println("Play Again?");
-		con.println("Yes or No");
+		if(intWordNum < intWordCount - 1){
+			con.println("Play Again?");
+			con.println("Yes or No");
+		}
 	}
 	
 	// No More Words Screen
 	public static void noWordsScreen(Console con){
 		con.println("There are no more words left");
+		con.println("");
 		con.println("Returning to Main Menu");
+		con.println("");
 	}
 	
 	// Hangman Drawings 1-7

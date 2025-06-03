@@ -3,8 +3,10 @@ import arc.*;
 public class CPTAidan{
 	public static void main(String[] args){
 		Console con = new Console("Hangman", 1280, 720);
+	
 		// load main menu
 		CPTAidanTools.mainMenu(con);
+	
 		// create/initialize variables
 		boolean blnGameOver;
 		blnGameOver = false;
@@ -36,7 +38,8 @@ public class CPTAidan{
 			if(strMode.equalsIgnoreCase("p")){
 				
 				// User inputs name and selects theme
-				con.println("\nEnter your name");
+				con.println("");
+				con.println("Enter your name");
 				strName = con.readLine();
 				con.println("");
 				CPTAidanTools.themeScreen(con);
@@ -50,7 +53,7 @@ public class CPTAidan{
 				while(theme.eof() == false){
 					strWordTemp = theme.readLine();
 					intWordCount = intWordCount + 1;
-				}
+				}		
 				// close text file
 				theme.close();
 				
@@ -58,13 +61,14 @@ public class CPTAidan{
 				String strWords[][];
 				strWords = new String[intWordCount][2];
 				theme = new TextInputFile(strTheme);
+			
 				// load words from text file into a 2 dimensional array
 				// with a corresponding random integer from 1 - 100
 				for(intCount = 0; intCount < intWordCount; intCount++){
 					strWords[intCount][0] = theme.readLine();
 					intRand = (int)(Math.random() * 100 + 1);
 					strWords[intCount][1] = intRand + "";
-				}
+				}	
 				// close text file
 				theme.close();
 				
@@ -83,6 +87,7 @@ public class CPTAidan{
 						}
 					}
 				}			
+				
 				// select a word and run game
 				// unless the player inputs they do not want to play
 				for(intWordNum = 0; intWordNum < intWordCount && blnPlayAgain == true; intWordNum++){
@@ -124,6 +129,7 @@ public class CPTAidan{
 					blnGameplayOn = true;
 					int intWrongCount;
 					intWrongCount = 0;
+					
 					// loop for each round of the game
 					while(intWrongCount < 6 && blnGameplayOn == true){
 						// print hangman drawing
@@ -212,7 +218,8 @@ public class CPTAidan{
 					strMode = "r";
 				}
 			}else if(strMode.equalsIgnoreCase("v")){
-				//print leaderboard
+				CPTAidanTools.clearScreen(con);
+				CPTAidanTools.viewLeaderboard(con);
 			}else if(strMode.equalsIgnoreCase("a")){
 				//player makes theme name
 				//player adds words to theme

@@ -91,6 +91,52 @@ public class CPTAidanTools{
 		con.println("");
 	}
 	
+	// Menu Option Calculations
+	// View Leaderboard
+	public static void viewLeaderboard(Console con){
+		TextInputFile leader = new TextInputFile("leaderboard.txt");
+		int intCount;
+		int intCount2;
+		int intPlayers;
+		intPlayers = 0;
+		String strName;
+		String strNameTemp;
+		String strScore;
+		String strScoreTemp;
+		while(leader.eof() == false){
+			strName = con.readLine();
+			strScore = con.readLine();
+			intPlayers = intPlayers + 1;
+		}
+		leader.close();
+		System.out.println("Number of players: "+intPlayers);
+		String strLeaderboard[][];
+		strLeaderboard = new String[intPlayers][2];
+		leader = new TextInputFile("leaderboard.txt");
+		for(intCount = 0; intCount < intPlayers; intCount++){
+			strLeaderboard[intCount][0] = leader.readLine();
+			strLeaderboard[intCount][1] = leader.readLine();
+		}
+		for(intCount2 = 0; intCount2 < intPlayers - 1; intCount2++){
+			for(intCount = 0; intCount < intPlayers - 1; intCount++){
+				if(Integer.parseInt(strLeaderboard[intCount][1]) < Integer.parseInt(strLeaderboard[intCount+1][1])){
+					strNameTemp = strLeaderboard[intCount][0];
+					strLeaderboard[intCount][0] = strLeaderboard[intCount+1][0];
+					strLeaderboard[intCount+1][0] = strNameTemp;
+					strScoreTemp = strLeaderboard[intCount][1];
+					strLeaderboard[intCount][1] = strLeaderboard[intCount+1][1];
+					strLeaderboard[intCount+1][1] = strScoreTemp;
+				}
+			}
+		}
+		con.println("Leaderboard");
+		con.println("");
+		for(intCount = 0; intCount < intPlayers; intCount++){
+			con.println(strLeaderboard[intCount][0]+" - "+strLeaderboard[intCount][1]+" Wins");
+		}
+	}
+	// Add Theme
+	
 	// Hangman Drawings 1-7
 	// Drawing 1: No body
 	public static void drawing1(Console con){

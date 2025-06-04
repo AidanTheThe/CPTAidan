@@ -3,8 +3,9 @@ import arc.*;
 public class CPTAidan{
 	public static void main(String[] args){
 		Console con = new Console("Hangman", 1280, 720);
-	
-		// load main menu
+		
+		String strTest;
+		// load main menu		
 		CPTAidanTools.mainMenu(con);
 	
 		// create/initialize variables
@@ -14,7 +15,7 @@ public class CPTAidan{
 		blnPlayAgain = true;
 		boolean blnGameplayOn;
 		blnGameplayOn = true;
-		String strPlayAgain;
+		String strPlayAgain = "";
 		int intWins = 0;
 		String strTheme = "";
 		String strWordTemp;
@@ -36,9 +37,8 @@ public class CPTAidan{
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
 			if(strMode.equalsIgnoreCase("p")){
-				
+				con.clear();
 				// User inputs name and selects theme
-				con.println("");
 				con.println("Enter your name");
 				strName = con.readLine();
 				con.println("");
@@ -132,6 +132,8 @@ public class CPTAidan{
 					
 					// loop for each round of the game
 					while(intWrongCount < 6 && blnGameplayOn == true){
+						// clear the screen
+						con.clear();
 						// print hangman drawing
 						if(intWrongCount == 0){
 							CPTAidanTools.drawing1(con);
@@ -176,8 +178,23 @@ public class CPTAidan{
 							intWins = intWins + 1;
 							intWrongCount = 0;
 							System.out.println("WINS: "+intWins);
-							CPTAidanTools.winScreen(con, intWordNum, intWordCount);
-							strPlayAgain = con.readLine();
+							if(intWordNum < intWordCount - 1){
+								con.clear();
+								CPTAidanTools.winScreen(con);
+								strPlayAgain = con.readLine();
+							}else{
+								con.clear();
+								CPTAidanTools.noWordsScreen(con);
+								con.println("3");
+								con.sleep(1000);
+								con.println("2");
+								con.sleep(1000);
+								con.println("1");
+								con.sleep(1000);
+								blnGameplayOn = false;
+								blnPlayAgain = false;
+								strMode = "r";
+							}
 							// if the player does not want to play again
 							// return to the main menu
 							if(strPlayAgain.equalsIgnoreCase("no")){
@@ -194,10 +211,9 @@ public class CPTAidan{
 					}
 					// if they do not guess correctly after 6 attempts
 					// fully draw the hangman
-					System.out.println(intWrongCount);
 					
 					if(intWrongCount == 6 && blnGameplayOn == true){
-						CPTAidanTools.drawing6(con);
+						CPTAidanTools.drawing7(con);
 						// and show the lose screen
 						CPTAidanTools.loseScreen(con, strWord, intWordNum, intWordCount);
 						strPlayAgain = con.readLine();
@@ -219,12 +235,6 @@ public class CPTAidan{
 				// if there are no more words in the array
 				// show the no more words screen
 				// return to main menu
-				if(intWordNum >= intWordCount && blnPlayAgain == true && blnGameplayOn == true){
-					CPTAidanTools.noWordsScreen(con);
-					blnPlayAgain = false;
-					blnGameplayOn = false;
-					strMode = "r";
-				}
 			}else if(strMode.equalsIgnoreCase("v")){
 				// print a leaderboard including the name and wins of previous players
 				CPTAidanTools.viewLeaderboard(con);

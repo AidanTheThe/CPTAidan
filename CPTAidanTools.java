@@ -5,7 +5,7 @@ public class CPTAidanTools{
 	// Screens/Menus
 	// Main Menu
 	public static void mainMenu(Console con){
-		con.println("");
+		con.clear();
 		con.println("|--------------------------|");
 		con.println("|Type P to Play Game       |");
 		con.println("|Type V to View Leaderboard|");
@@ -18,6 +18,7 @@ public class CPTAidanTools{
 	}
 	// Help Screen
 	public static void helpScreen(Console con){
+		con.clear();
 		con.println("Help");
 		con.println("");
 		con.println("How To Play");
@@ -55,23 +56,13 @@ public class CPTAidanTools{
 		themes.close();
 		System.out.println("Closed themes.txt");
 	}
-	// Clear Screen
-	public static void clearScreen(Console con){
-		int intCount;
-		for(intCount = 0; intCount < 30; intCount++){
-			con.println("");
-		}
-	}
-	
 	// Win Screen
-	public static void winScreen(Console con, int intWordNum, int intWordCount){
+	public static void winScreen(Console con){
 		con.println("");
 		con.println("You Win!");
 		con.println("");
-		if(intWordNum < intWordCount - 1){
-			con.println("Play Again?");
-			con.println("Yes or No");
-		}
+		con.println("Play Again?");
+		con.println("Yes or No");
 	}
 	
 	// Lose Screen
@@ -92,12 +83,15 @@ public class CPTAidanTools{
 		con.println("There are no more words left");
 		con.println("");
 		con.println("Returning to Main Menu");
-		con.println("");
 	}
 	
 	// Menu Option Calculations
+	
 	// View Leaderboard
 	public static void viewLeaderboard(Console con){
+		// clear screen
+		con.clear();
+		// create/initalize variables
 		int intCount;
 		int intCount2;
 		int intPlayers;
@@ -106,7 +100,7 @@ public class CPTAidanTools{
 		String strNameTemp;
 		String strScore;
 		String strScoreTemp;
-		
+		// open and close leaderboard.txt
 		TextInputFile leader = new TextInputFile("leaderboard.txt");
 		while(leader.eof() == false){
 			strNameTemp = leader.readLine();
@@ -115,7 +109,7 @@ public class CPTAidanTools{
 		}
 		leader.close();
 		System.out.println("Number of players: "+intPlayers);
-		
+		// load data from leaderboard.txt into an array
 		String strLeaderboard[][];
 		strLeaderboard = new String[intPlayers][2];
 		leader = new TextInputFile("leaderboard.txt");
@@ -123,7 +117,7 @@ public class CPTAidanTools{
 			strLeaderboard[intCount][0] = leader.readLine();
 			strLeaderboard[intCount][1] = leader.readLine();
 		}
-		
+		// sort the data from most to least wins
 		for(intCount2 = 0; intCount2 < intPlayers - 1; intCount2++){
 			for(intCount = 0; intCount < intPlayers - 1; intCount++){
 				if(Integer.parseInt(strLeaderboard[intCount][1]) < Integer.parseInt(strLeaderboard[intCount+1][1])){
@@ -136,8 +130,7 @@ public class CPTAidanTools{
 				}
 			}
 		}
-		
-		con.println("");
+		// print out data 
 		con.println("Leaderboard");
 		con.println("");
 		for(intCount = 0; intCount < intPlayers; intCount++){
@@ -150,23 +143,29 @@ public class CPTAidanTools{
 		con.println("");
 		con.println("Type R to Return to the Main Menu");
 	}
+	
 	// Add Theme
 	public static void addTheme(Console con){
+		// clear screen
+		con.clear();
+		// create/initialize variables
 		String strThemeName;
 		String strWord = "";
 		con.println("Enter a theme name");
 		con.println("Ex: food, movies, superheroes, etc...");
 		con.println("");
 		strThemeName = con.readLine();
-		strThemeName = strThemeName + ".txt";
-		
+		// open themes.txt and print new theme name
 		TextOutputFile themes = new TextOutputFile("themes.txt", true);
 		themes.println(strThemeName);
 		themes.close();
+		// prompt user to input words that relate to the theme
+		con.println("");
 		con.println("Enter words relating to the theme");
 		con.println("And enter 'stop' to stop");
 		con.println("");
-		
+		// print new words to the newly created theme file
+		strThemeName = strThemeName + ".txt";
 		TextOutputFile newtheme = new TextOutputFile(strThemeName);
 		while(!strWord.equalsIgnoreCase("stop")){
 			strWord = con.readLine();
@@ -179,8 +178,10 @@ public class CPTAidanTools{
 		con.println("");
 		con.println("Type R to Return to the Main Menu");
 	}
+	
 	// Game Summary
 	public static void gameSummary(Console con, String strName, int intWins, String strTheme){
+		con.clear();
 		int intCount;
 		if(!strTheme.equalsIgnoreCase("")){
 			System.out.println("Quit Screen 1");
@@ -194,15 +195,9 @@ public class CPTAidanTools{
 			con.println("Last Played Theme: "+strTheme);
 			con.println("");
 			con.println("Thank you for playing");
-			for(intCount = 1; intCount <= 23; intCount++){
-				con.println("");
-			}
 		}else{
 			System.out.println("Quit Screen 2");
 			con.println("Thank you for playing");
-			for(intCount = 1; intCount <= 29; intCount++){
-				con.println("");
-			}
 		} 
 	}
 	
@@ -210,8 +205,8 @@ public class CPTAidanTools{
 	// Drawing 1: No body
 	public static void drawing1(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
+		con.println("    /--------|");
+		con.println("    |        |");
 		con.println("    |");
 		con.println("    |");
 		con.println("    |");
@@ -221,9 +216,9 @@ public class CPTAidanTools{
 	// Drawing 2: Head
 	public static void drawing2(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
 		con.println("    |");
 		con.println("    |");
 		con.println("    |");
@@ -232,10 +227,10 @@ public class CPTAidanTools{
 	// Drawing 3: Head + Body
 	public static void drawing3(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
-		con.println("    |          |");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
+		con.println("    |        |");
 		con.println("    |");
 		con.println("    |");
 		con.println("- - - - -");
@@ -243,10 +238,10 @@ public class CPTAidanTools{
 	// Drawing 4: Head + Body + Left Arm
 	public static void drawing4(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
-		con.println("    |         \\|");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
+		con.println("    |       \\|");
 		con.println("    |");
 		con.println("    |");
 		con.println("---------");
@@ -254,10 +249,10 @@ public class CPTAidanTools{
 	// Drawing 5: Head + Body + Arms
 	public static void drawing5(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
-		con.println("    |         \\|/");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
+		con.println("    |       \\|/");
 		con.println("    |");
 		con.println("    |");
 		con.println("---------");
@@ -265,22 +260,22 @@ public class CPTAidanTools{
 	// Drawing 6: Head + Body + Arms + Left Leg
 	public static void drawing6(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
-		con.println("    |         \\|/");
-		con.println("    |         /");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
+		con.println("    |       \\|/");
+		con.println("    |       /");
 		con.println("    |");
 		con.println("---------");
 	}
 	// Drawing 7: Head + Body + Arms + Legs
 	public static void drawing7(Console con){
 		con.println("");
-		con.println("    /----------|");
-		con.println("    |          |");
-		con.println("    |          O");
-		con.println("    |         \\|/");
-		con.println("    |         / \\");
+		con.println("    /--------|");
+		con.println("    |        |");
+		con.println("    |        O");
+		con.println("    |       \\|/");
+		con.println("    |       / \\");
 		con.println("    |");
 		con.println("---------");
 	}

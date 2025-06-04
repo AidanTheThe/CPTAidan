@@ -183,15 +183,14 @@ public class CPTAidanTools{
 	public static void gameSummary(Console con, String strName, int intWins, String strTheme){
 		int intCount;
 		if(!strTheme.equalsIgnoreCase("")){
+			System.out.println("Quit Screen 1");
 			con.println("Game Summary");
 			con.println("");
 			con.println("Name: "+strName);
 			con.println("Wins: "+intWins);
-			System.out.println("TEST");
 			int intThemeLength;
 			intThemeLength = strTheme.length();
 			strTheme = strTheme.substring(0, intThemeLength - 4);
-			con.println("TEST");
 			con.println("Last Played Theme: "+strTheme);
 			con.println("");
 			con.println("Thank you for playing");
@@ -199,6 +198,7 @@ public class CPTAidanTools{
 				con.println("");
 			}
 		}else{
+			System.out.println("Quit Screen 2");
 			con.println("Thank you for playing");
 			for(intCount = 1; intCount <= 29; intCount++){
 				con.println("");

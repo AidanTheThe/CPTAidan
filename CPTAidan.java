@@ -182,6 +182,10 @@ public class CPTAidan{
 							// return to the main menu
 							if(strPlayAgain.equalsIgnoreCase("no")){
 								intWrongCount = 0;
+								TextOutputFile board = new TextOutputFile("leaderboard.txt", true);
+								board.println(strName);
+								board.println(intWins);
+								board.close();
 								blnPlayAgain = false;
 								blnGameplayOn = false;
 								strMode = "r";
@@ -201,6 +205,10 @@ public class CPTAidan{
 						// return to the main menu
 						if(strPlayAgain.equalsIgnoreCase("no")){
 							intWrongCount = 0;
+							TextOutputFile board = new TextOutputFile("leaderboard.txt", true);
+							board.println(strName);
+							board.println(intWins);
+							board.close();
 							blnPlayAgain = false;
 							blnGameplayOn = false;
 							strMode = "r";

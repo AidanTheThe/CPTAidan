@@ -16,7 +16,7 @@ public class CPTAidan{
 		blnGameplayOn = true;
 		String strPlayAgain;
 		int intWins = 0;
-		String strTheme;
+		String strTheme = "";
 		String strWordTemp;
 		String strNumTemp;
 		String strLetterTemp;
@@ -26,7 +26,7 @@ public class CPTAidan{
 		int intCount2;
 		int intRand;
 		int intWordCount = 0;
-		String strName;
+		String strName = "";
 		String strMode;
 		strMode = con.readLine();
 		String strWord;
@@ -218,14 +218,17 @@ public class CPTAidan{
 					strMode = "r";
 				}
 			}else if(strMode.equalsIgnoreCase("v")){
-				CPTAidanTools.clearScreen(con);
+				// print a leaderboard including the name and wins of previous players
 				CPTAidanTools.viewLeaderboard(con);
+				strMode = con.readLine();
 			}else if(strMode.equalsIgnoreCase("a")){
-				//player makes theme name
-				//player adds words to theme
+				// player makes theme name and adds words to theme
+				CPTAidanTools.addTheme(con);
+				strMode = con.readLine();
 			}else if(strMode.equalsIgnoreCase("q")){
-				//close all files
-				//clear screen
+				// print game summary
+				CPTAidanTools.gameSummary(con, strName, intWins, strTheme);
+				blnGameOver = true;
 			}else if(strMode.equalsIgnoreCase("h")){
 				// print help screen
 				CPTAidanTools.helpScreen(con);
@@ -237,6 +240,11 @@ public class CPTAidan{
 			}else if(strMode.equalsIgnoreCase("r")){
 				// return the player back to the main menu
 				CPTAidanTools.mainMenu(con);
+				strMode = con.readLine();
+			}else{
+				// if the player inputs a mode that is not a valid input
+				// display an error message
+				con.println("Error: Invalid Input - Try Again");
 				strMode = con.readLine();
 			}
 		}

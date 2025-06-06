@@ -56,6 +56,7 @@ public class CPTAidan{
 				
 				// Counting how many words are in the theme file
 				TextInputFile theme = new TextInputFile(strTheme);
+				intWordCount = 0;
 				while(theme.eof() == false){
 					strWordTemp = theme.readLine();
 					System.out.println(strWordTemp);
@@ -63,21 +64,24 @@ public class CPTAidan{
 				}		
 				// close text file
 				theme.close();
+				System.out.println("Word Count: "+intWordCount);
 				
 				// create array and reopen text file
 				String strWords[][];
 				strWords = new String[intWordCount][2];
 				theme = new TextInputFile(strTheme);
-			
+				
 				// load words from text file into a 2 dimensional array
 				// with a corresponding random integer from 1 - 100
 				for(intCount = 0; intCount < intWordCount; intCount++){
 					strWords[intCount][0] = theme.readLine();
+					System.out.println(strWords[intCount][0]);
 					intRand = (int)(Math.random() * 100 + 1);
 					strWords[intCount][1] = intRand + "";
 				}	
 				// close text file
 				theme.close();
+				System.out.println("Words have been loaded into the array");
 				
 				// bubble sort the rows from least to greatest			
 				for(intCount2 = 0; intCount2 < intWordCount - 1; intCount2++){
@@ -94,9 +98,11 @@ public class CPTAidan{
 						}
 					}
 				}			
+				System.out.println("Words have been bubble sorted");
 				
 				// select a word and run game
 				// unless the player inputs they do not want to play
+				blnPlayAgain = true;
 				for(intWordNum = 0; intWordNum < intWordCount && blnPlayAgain == true; intWordNum++){
 					// Remove any coloured screens
 					con.setDrawColor(Color.BLACK);

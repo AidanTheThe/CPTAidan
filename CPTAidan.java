@@ -1,13 +1,11 @@
 import arc.*;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class CPTAidan{
 	public static void main(String[] args){
 		Console con = new Console("Hangman", 1280, 720);
 		
-		String strTest;
-		// load main menu		
-		CPTAidanTools.mainMenu(con);
-	
 		// create/initialize variables
 		boolean blnGameOver;
 		blnGameOver = false;
@@ -29,19 +27,27 @@ public class CPTAidan{
 		int intWordCount = 0;
 		String strName = "";
 		String strMode;
-		strMode = con.readLine();
 		String strWord;
 		String strGuess;
 		int intWordNum = 0;
 		
+		// load main menu and get the user's name	
+		CPTAidanTools.mainMenu(con);
+		strMode = con.readLine();
+		con.clear();
+		
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
+			// User enters name and selects theme
 			if(strMode.equalsIgnoreCase("p")){
 				con.clear();
-				// User inputs name and selects theme
-				con.println("Enter your name");
-				strName = con.readLine();
-				con.println("");
+				if(strName.equalsIgnoreCase("")){
+					con.println("Enter your name");
+					strName = con.readLine();
+					con.clear();
+				}
 				CPTAidanTools.themeScreen(con);
 				con.println("");
 				strTheme = con.readLine();
@@ -52,6 +58,7 @@ public class CPTAidan{
 				TextInputFile theme = new TextInputFile(strTheme);
 				while(theme.eof() == false){
 					strWordTemp = theme.readLine();
+					System.out.println(strWordTemp);
 					intWordCount = intWordCount + 1;
 				}		
 				// close text file
@@ -91,6 +98,9 @@ public class CPTAidan{
 				// select a word and run game
 				// unless the player inputs they do not want to play
 				for(intWordNum = 0; intWordNum < intWordCount && blnPlayAgain == true; intWordNum++){
+					// Remove any coloured screens
+					con.setDrawColor(Color.BLACK);
+					con.fillRect(0,0,1280,720);
 					// choosing a word
 					strWord = strWords[intWordNum][0];
 					// measuring the length of the word
@@ -178,12 +188,13 @@ public class CPTAidan{
 							intWins = intWins + 1;
 							intWrongCount = 0;
 							System.out.println("WINS: "+intWins);
-							if(intWordNum < intWordCount - 1){
+							con.clear();
+							CPTAidanTools.winScreen(con);
+							strPlayAgain = con.readLine();
+							if(intWordNum >= intWordCount - 1){
 								con.clear();
-								CPTAidanTools.winScreen(con);
-								strPlayAgain = con.readLine();
-							}else{
-								con.clear();
+								con.setDrawColor(Color.BLACK);
+								con.fillRect(0,0,1280,720);
 								CPTAidanTools.noWordsScreen(con);
 								con.println("3");
 								con.sleep(1000);
@@ -213,10 +224,30 @@ public class CPTAidan{
 					// fully draw the hangman
 					
 					if(intWrongCount == 6 && blnGameplayOn == true){
+						con.clear();
 						CPTAidanTools.drawing7(con);
 						// and show the lose screen
 						CPTAidanTools.loseScreen(con, strWord, intWordNum, intWordCount);
+						con.println("");
+						con.println("");
+						con.println("The word was: "+strWord);
+						con.println("");
 						strPlayAgain = con.readLine();
+						if(intWordNum >= intWordCount - 1){
+							con.clear();
+							con.setDrawColor(Color.BLACK);
+							con.fillRect(0,0,1280,720);
+							CPTAidanTools.noWordsScreen(con);
+							con.println("3");
+							con.sleep(1000);
+							con.println("2");
+							con.sleep(1000);
+							con.println("1");
+							con.sleep(1000);
+							blnGameplayOn = false;
+							blnPlayAgain = false;
+							strMode = "r";
+						}
 						// if the player does not want to play again
 						// return to the main menu
 						if(strPlayAgain.equalsIgnoreCase("no")){

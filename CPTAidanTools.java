@@ -1,4 +1,6 @@
 import arc.*;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class CPTAidanTools{
 	
@@ -6,6 +8,8 @@ public class CPTAidanTools{
 	// Main Menu
 	public static void mainMenu(Console con){
 		con.clear();
+		con.setDrawColor(Color.BLACK);
+		con.fillRect(0,0,1280,720);
 		con.println("|--------------------------|");
 		con.println("|Type P to Play Game       |");
 		con.println("|Type V to View Leaderboard|");
@@ -46,6 +50,7 @@ public class CPTAidanTools{
 	// Theme Screen
 	public static void themeScreen(Console con){
 		con.println("Select a theme:");
+		con.println("");
 		TextInputFile themes = new TextInputFile("themes.txt");
 		System.out.println("Opened themes.txt");
 		String strTheme;
@@ -58,24 +63,14 @@ public class CPTAidanTools{
 	}
 	// Win Screen
 	public static void winScreen(Console con){
-		con.println("");
-		con.println("You Win!");
-		con.println("");
-		con.println("Play Again?");
-		con.println("Yes or No");
+		BufferedImage imgWin = con.loadImage("You_Win_Screen.png");
+		con.drawImage(imgWin, 0, 0);
 	}
 	
 	// Lose Screen
 	public static void loseScreen(Console con, String strWord, int intWordNum, int intWordCount){
-		con.println("");
-		con.println("You Lose");
-		con.println("");
-		con.println("The word was: "+strWord);
-		con.println("");
-		if(intWordNum < intWordCount - 1){
-			con.println("Play Again?");
-			con.println("Yes or No");
-		}
+		BufferedImage imgWin = con.loadImage("You_Lose_Screen.png");
+		con.drawImage(imgWin, 0, 0);
 	}
 	
 	// No More Words Screen
@@ -227,16 +222,18 @@ public class CPTAidanTools{
 	// Drawing 3: Head + Body
 	public static void drawing3(Console con){
 		con.println("");
+		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
 		con.println("    |        |");
 		con.println("    |");
 		con.println("    |");
-		con.println("- - - - -");
+		con.println("---------");
 	}
 	// Drawing 4: Head + Body + Left Arm
 	public static void drawing4(Console con){
+		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
@@ -249,6 +246,7 @@ public class CPTAidanTools{
 	// Drawing 5: Head + Body + Arms
 	public static void drawing5(Console con){
 		con.println("");
+		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
@@ -260,6 +258,7 @@ public class CPTAidanTools{
 	// Drawing 6: Head + Body + Arms + Left Leg
 	public static void drawing6(Console con){
 		con.println("");
+		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
@@ -270,6 +269,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 7: Head + Body + Arms + Legs
 	public static void drawing7(Console con){
+		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");

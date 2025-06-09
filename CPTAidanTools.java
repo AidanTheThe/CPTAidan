@@ -36,6 +36,7 @@ public class CPTAidanTools{
 	}
 	// Secret Menu
 	public static void secretMenu(Console con){
+		con.clear();
 		con.println("I asked the IT guy, 'how do you make a motherboard?'");
 		con.println("He said, 'I tell her about my job.'");
 		con.println("");
@@ -49,7 +50,7 @@ public class CPTAidanTools{
 	}
 	// Theme Screen
 	public static void themeScreen(Console con){
-		con.println("Select a theme:");
+		con.println("Select and type out a theme:");
 		con.println("");
 		TextInputFile themes = new TextInputFile("themes.txt");
 		System.out.println("Opened themes.txt");
@@ -63,13 +64,13 @@ public class CPTAidanTools{
 	}
 	// Win Screen
 	public static void winScreen(Console con){
-		BufferedImage imgWin = con.loadImage("You_Win_Screen.png");
+		BufferedImage imgWin = con.loadImage("Win_Black_Screen.png");
 		con.drawImage(imgWin, 0, 0);
 	}
 	
 	// Lose Screen
-	public static void loseScreen(Console con, String strWord, int intWordNum, int intWordCount){
-		BufferedImage imgWin = con.loadImage("You_Lose_Screen.png");
+	public static void loseScreen(Console con){
+		BufferedImage imgWin = con.loadImage("Lose_Black_Screen.png");
 		con.drawImage(imgWin, 0, 0);
 	}
 	
@@ -78,6 +79,16 @@ public class CPTAidanTools{
 		con.println("There are no more words left");
 		con.println("");
 		con.println("Returning to Main Menu");
+	}
+	
+	// Loading Screen
+	public static void loadingScreen(Console con){
+		con.println("TEST1");
+		int intLength = 0;
+		BufferedImage imgLoad = con.loadImage("Loading_Screen.png");
+		con.drawImage(imgLoad, 0, 0);
+		con.setDrawColor(Color.WHITE);
+		con.fillRect(0,600,1280,12);
 	}
 	
 	// Menu Option Calculations
@@ -200,6 +211,7 @@ public class CPTAidanTools{
 	// Drawing 1: No body
 	public static void drawing1(Console con){
 		con.println("");
+		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |");
@@ -210,6 +222,7 @@ public class CPTAidanTools{
 	}
 	// Drawing 2: Head
 	public static void drawing2(Console con){
+		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");

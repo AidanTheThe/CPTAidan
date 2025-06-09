@@ -1,3 +1,6 @@
+// Aidan Brown
+// Hangman Game
+
 import arc.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -34,6 +37,10 @@ public class CPTAidan{
 		// load main menu and get the user's name	
 		CPTAidanTools.mainMenu(con);
 		strMode = con.readLine();
+		con.clear();
+		CPTAidanTools.loadingScreen(con);
+		con.println("TEST2");
+		con.sleep(3000);
 		con.clear();
 		
 		// While loop that encases all code excluding startup menu and some variables
@@ -233,7 +240,7 @@ public class CPTAidan{
 						con.clear();
 						CPTAidanTools.drawing7(con);
 						// and show the lose screen
-						CPTAidanTools.loseScreen(con, strWord, intWordNum, intWordCount);
+						CPTAidanTools.loseScreen(con);
 						con.println("");
 						con.println("");
 						con.println("The word was: "+strWord);

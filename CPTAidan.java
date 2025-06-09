@@ -39,8 +39,7 @@ public class CPTAidan{
 		strMode = con.readLine();
 		con.clear();
 		CPTAidanTools.loadingScreen(con);
-		con.println("TEST2");
-		con.sleep(3000);
+		con.sleep(2000);
 		con.clear();
 		
 		// While loop that encases all code excluding startup menu and some variables

@@ -83,12 +83,22 @@ public class CPTAidanTools{
 	
 	// Loading Screen
 	public static void loadingScreen(Console con){
-		con.println("TEST1");
 		int intLength = 0;
+		int intLengthRand;
+		int intTimeRand;
 		BufferedImage imgLoad = con.loadImage("Loading_Screen.png");
 		con.drawImage(imgLoad, 0, 0);
 		con.setDrawColor(Color.WHITE);
-		con.fillRect(0,600,1280,12);
+		con.println("");
+		while(intLength <= 1350){
+			con.fillRect(0,600,intLength,12);
+			intLengthRand = (int)(Math.random() * 61 + 30);
+			intLength = intLength + intLengthRand;
+			con.println("");
+			intTimeRand = (int)(Math.random() * 301 + 150);
+			con.sleep(intTimeRand);
+		}
+		con.println("");
 	}
 	
 	// Menu Option Calculations

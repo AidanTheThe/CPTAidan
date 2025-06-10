@@ -1,6 +1,6 @@
 // Aidan Brown
 // Hangman Game
-// Data was created
+// May 23, 2025
 // 1.4
 
 import arc.*;
@@ -41,9 +41,7 @@ public class CPTAidan{
 		CPTAidanTools.mainMenu(con);
 		strMode = con.readLine();
 		con.clear();
-		CPTAidanTools.loadingScreen(con);
-		con.sleep(1000);
-		con.clear();
+
 		
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
@@ -52,6 +50,11 @@ public class CPTAidan{
 			// User enters name and selects theme
 			if(strMode.equalsIgnoreCase("p")){
 				con.clear();
+				CPTAidanTools.loadingScreen(con);
+				con.sleep(1000);
+				con.clear();
+				con.setDrawColor(Color.BLACK);
+				con.fillRect(0,0,1280,720);
 				if(strName.equalsIgnoreCase("")){
 					con.println("Enter your name");
 					strName = con.readLine();
@@ -314,6 +317,9 @@ public class CPTAidan{
 				// if the player inputs a mode that is not a valid input
 				// display an error message
 				con.println("Error: Invalid Input - Try Again");
+				con.println("");
+				CPTAidanTools.mainMenu(con);
+				con.println("");
 				strMode = con.readLine();
 			}
 		}

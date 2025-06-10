@@ -70,15 +70,28 @@ public class CPTAidanTools{
 	
 	// Lose Screen
 	public static void loseScreen(Console con){
-		BufferedImage imgWin = con.loadImage("Lose_Black_Screen.png");
-		con.drawImage(imgWin, 0, 0);
+		BufferedImage imgLose = con.loadImage("Lose_Black_Screen.png");
+		con.drawImage(imgLose, 0, 0);
 	}
 	
 	// No More Words Screen
 	public static void noWordsScreen(Console con){
-		con.println("There are no more words left");
+		int intLength = 0;
+		int intLengthRand;
+		int intTimeRand;
+		BufferedImage imgNoWords = con.loadImage("No_More_Words_Screen.png");
+		con.drawImage(imgNoWords, 0, 0);
+		con.setDrawColor(Color.WHITE);
 		con.println("");
-		con.println("Returning to Main Menu");
+		while(intLength <= 1350){
+			con.fillRect(0,600,intLength,12);
+			intLengthRand = (int)(Math.random() * 61 + 30);
+			intLength = intLength + intLengthRand;
+			con.println("");
+			intTimeRand = (int)(Math.random() * 101 + 100);
+			con.sleep(intTimeRand);
+		}
+		con.println("");
 	}
 	
 	// Loading Screen
@@ -221,7 +234,6 @@ public class CPTAidanTools{
 	// Drawing 1: No body
 	public static void drawing1(Console con){
 		con.println("");
-		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |");
@@ -232,7 +244,6 @@ public class CPTAidanTools{
 	}
 	// Drawing 2: Head
 	public static void drawing2(Console con){
-		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
@@ -245,7 +256,6 @@ public class CPTAidanTools{
 	// Drawing 3: Head + Body
 	public static void drawing3(Console con){
 		con.println("");
-		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
@@ -256,7 +266,6 @@ public class CPTAidanTools{
 	}
 	// Drawing 4: Head + Body + Left Arm
 	public static void drawing4(Console con){
-		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
@@ -269,7 +278,6 @@ public class CPTAidanTools{
 	// Drawing 5: Head + Body + Arms
 	public static void drawing5(Console con){
 		con.println("");
-		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
@@ -281,7 +289,6 @@ public class CPTAidanTools{
 	// Drawing 6: Head + Body + Arms + Left Leg
 	public static void drawing6(Console con){
 		con.println("");
-		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");
 		con.println("    |        O");
@@ -292,7 +299,6 @@ public class CPTAidanTools{
 	}
 	// Drawing 7: Head + Body + Arms + Legs
 	public static void drawing7(Console con){
-		con.println("");
 		con.println("");
 		con.println("    /--------|");
 		con.println("    |        |");

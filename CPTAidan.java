@@ -1,5 +1,7 @@
 // Aidan Brown
 // Hangman Game
+// Data was created
+// 1.4
 
 import arc.*;
 import java.awt.Color;
@@ -19,6 +21,7 @@ public class CPTAidan{
 		String strPlayAgain = "";
 		int intWins = 0;
 		String strTheme = "";
+		String strThemetxt = "";
 		String strWordTemp;
 		String strNumTemp;
 		String strLetterTemp;
@@ -39,7 +42,7 @@ public class CPTAidan{
 		strMode = con.readLine();
 		con.clear();
 		CPTAidanTools.loadingScreen(con);
-		con.sleep(2000);
+		con.sleep(1000);
 		con.clear();
 		
 		// While loop that encases all code excluding startup menu and some variables
@@ -57,11 +60,11 @@ public class CPTAidan{
 				CPTAidanTools.themeScreen(con);
 				con.println("");
 				strTheme = con.readLine();
-				strTheme = strTheme + ".txt";
-				System.out.println(strTheme);
+				strThemetxt = strTheme + ".txt";
+				System.out.println(strThemetxt);
 				
 				// Counting how many words are in the theme file
-				TextInputFile theme = new TextInputFile(strTheme);
+				TextInputFile theme = new TextInputFile(strThemetxt);
 				intWordCount = 0;
 				while(theme.eof() == false){
 					strWordTemp = theme.readLine();
@@ -75,7 +78,7 @@ public class CPTAidan{
 				// create array and reopen text file
 				String strWords[][];
 				strWords = new String[intWordCount][2];
-				theme = new TextInputFile(strTheme);
+				theme = new TextInputFile(strThemetxt);
 				
 				// load words from text file into a 2 dimensional array
 				// with a corresponding random integer from 1 - 100
@@ -107,7 +110,7 @@ public class CPTAidan{
 				System.out.println("Words have been bubble sorted");
 				
 				// select a word and run game
-				// unless the player inputs they do not want to play
+				// unless the player has input that they do not want to play
 				blnPlayAgain = true;
 				for(intWordNum = 0; intWordNum < intWordCount && blnPlayAgain == true; intWordNum++){
 					// Remove any coloured screens
@@ -156,6 +159,8 @@ public class CPTAidan{
 					while(intWrongCount < 6 && blnGameplayOn == true){
 						// clear the screen
 						con.clear();
+						// print theme name
+						con.println("Theme: "+strTheme);
 						// print hangman drawing
 						if(intWrongCount == 0){
 							CPTAidanTools.drawing1(con);
@@ -202,18 +207,20 @@ public class CPTAidan{
 							System.out.println("WINS: "+intWins);
 							con.clear();
 							CPTAidanTools.winScreen(con);
+							con.println("Theme: "+strTheme);
+							con.println("The word was: "+strWord);
+							if(strName.equalsIgnoreCase("statitan")){
+								con.println("You are statitan, so every win counts as 5 wins instead of 1");
+								intWins = intWins + 4;
+								System.out.println("WINS: "+intWins);
+							}
+							con.println("");
 							strPlayAgain = con.readLine();
 							if(intWordNum >= intWordCount - 1){
 								con.clear();
-								con.setDrawColor(Color.BLACK);
-								con.fillRect(0,0,1280,720);
 								CPTAidanTools.noWordsScreen(con);
-								con.println("3");
-								con.sleep(1000);
-								con.println("2");
-								con.sleep(1000);
-								con.println("1");
-								con.sleep(1000);
+								System.out.println("TESTING");
+								con.sleep(500);
 								blnGameplayOn = false;
 								blnPlayAgain = false;
 								strMode = "r";
@@ -237,12 +244,18 @@ public class CPTAidan{
 					
 					if(intWrongCount == 6 && blnGameplayOn == true){
 						con.clear();
+						con.println("Theme: "+strTheme);
 						CPTAidanTools.drawing7(con);
 						// and show the lose screen
 						CPTAidanTools.loseScreen(con);
 						con.println("");
 						con.println("");
 						con.println("The word was: "+strWord);
+						if(strName.equalsIgnoreCase("statitan")){
+							con.println("You are statitan, so every loss counts as a win");
+							intWins = intWins + 1;
+							System.out.println("WINS: "+intWins);
+						}
 						con.println("");
 						strPlayAgain = con.readLine();
 						if(intWordNum >= intWordCount - 1){
@@ -250,12 +263,7 @@ public class CPTAidan{
 							con.setDrawColor(Color.BLACK);
 							con.fillRect(0,0,1280,720);
 							CPTAidanTools.noWordsScreen(con);
-							con.println("3");
-							con.sleep(1000);
-							con.println("2");
-							con.sleep(1000);
-							con.println("1");
-							con.sleep(1000);
+							con.sleep(500);
 							blnGameplayOn = false;
 							blnPlayAgain = false;
 							strMode = "r";

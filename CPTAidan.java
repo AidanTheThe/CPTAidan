@@ -1,7 +1,7 @@
-// Aidan Brown
-// Hangman Game
-// May 23, 2025
-// 1.4
+// Name - Aidan Brown
+// Game - Hangman
+// Date - May 23, 2025
+// Version - 1.4
 
 import arc.*;
 import java.awt.Color;
@@ -12,12 +12,10 @@ public class CPTAidan{
 		Console con = new Console("Hangman", 1280, 720);
 		
 		// create/initialize variables
-		boolean blnGameOver;
-		blnGameOver = false;
-		boolean blnPlayAgain;
-		blnPlayAgain = true;
-		boolean blnGameplayOn;
-		blnGameplayOn = true;
+		boolean blnGameOver = false;
+		boolean blnPlayAgain = true;
+		boolean blnGameplayOn = true;
+		String strAddTheme = "";
 		String strPlayAgain = "";
 		int intWins = 0;
 		String strTheme = "";
@@ -37,16 +35,14 @@ public class CPTAidan{
 		String strGuess;
 		int intWordNum = 0;
 		
-		// load main menu and get the user's name	
-		CPTAidanTools.mainMenu(con);
-		strMode = con.readLine();
-		con.clear();
-
-		
 		// While loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0,0,1280,720);
+			// load main menu and get the user's name
+			CPTAidanTools.mainMenu(con);
+			strMode = con.readLine();
+			con.clear();
 			// User enters name and selects theme
 			if(strMode.equalsIgnoreCase("p")){
 				con.clear();
@@ -295,8 +291,10 @@ public class CPTAidan{
 				strMode = con.readLine();
 			}else if(strMode.equalsIgnoreCase("a")){
 				// player makes theme name and adds words to theme
-				CPTAidanTools.addTheme(con);
-				strMode = con.readLine();
+				strAddTheme = CPTAidanTools.addTheme(con);
+				if(!strAddTheme.equalsIgnoreCase("r")){
+					strMode = con.readLine();
+				}
 			}else if(strMode.equalsIgnoreCase("q")){
 				// print game summary
 				CPTAidanTools.gameSummary(con, strName, intWins, strTheme);
@@ -312,14 +310,6 @@ public class CPTAidan{
 			}else if(strMode.equalsIgnoreCase("r")){
 				// return the player back to the main menu
 				CPTAidanTools.mainMenu(con);
-				strMode = con.readLine();
-			}else{
-				// if the player inputs a mode that is not a valid input
-				// display an error message
-				con.println("Error: Invalid Input - Try Again");
-				con.println("");
-				CPTAidanTools.mainMenu(con);
-				con.println("");
 				strMode = con.readLine();
 			}
 		}

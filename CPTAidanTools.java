@@ -182,7 +182,7 @@ public class CPTAidanTools{
 	}
 	
 	// Add Theme
-	public static void addTheme(Console con){
+	public static String addTheme(Console con){
 		// clear screen
 		con.clear();
 		// create/initialize variables
@@ -190,30 +190,34 @@ public class CPTAidanTools{
 		String strWord = "";
 		con.println("Enter a theme name");
 		con.println("Ex: food, movies, superheroes, etc...");
+		con.println("Type R to Return to the Main Menu");
 		con.println("");
 		strThemeName = con.readLine();
 		// open themes.txt and print new theme name
-		TextOutputFile themes = new TextOutputFile("themes.txt", true);
-		themes.println(strThemeName);
-		themes.close();
-		// prompt user to input words that relate to the theme
-		con.println("");
-		con.println("Enter words relating to the theme");
-		con.println("And enter 'stop' to stop");
-		con.println("");
-		// print new words to the newly created theme file
-		strThemeName = strThemeName + ".txt";
-		TextOutputFile newtheme = new TextOutputFile(strThemeName);
-		while(!strWord.equalsIgnoreCase("stop")){
-			strWord = con.readLine();
-			if(!strWord.equalsIgnoreCase("stop")){
-				newtheme.println(strWord);
+		if(!strThemeName.equalsIgnoreCase("r")){
+			TextOutputFile themes = new TextOutputFile("themes.txt", true);
+			themes.println(strThemeName);
+			themes.close();
+			// prompt user to input words that relate to the theme
+			con.println("");
+			con.println("Enter words relating to the theme");
+			con.println("And enter 'stop' to stop");
+			con.println("");
+			// print new words to the newly created theme file
+			strThemeName = strThemeName + ".txt";
+			TextOutputFile newtheme = new TextOutputFile(strThemeName);
+			while(!strWord.equalsIgnoreCase("stop")){
+				strWord = con.readLine();
+				if(!strWord.equalsIgnoreCase("stop")){
+					newtheme.println(strWord);
+				}
 			}
+			con.println("");
+			con.println("New Theme Successfully Added");
+			con.println("");
+			con.println("Type R to Return to the Main Menu");
 		}
-		con.println("");
-		con.println("New Theme Successfully Added");
-		con.println("");
-		con.println("Type R to Return to the Main Menu");
+		return strThemeName;
 	}
 	
 	// Game Summary

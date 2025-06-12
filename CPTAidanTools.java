@@ -5,11 +5,14 @@ import java.awt.image.BufferedImage;
 public class CPTAidanTools{
 	
 	// Screens/Menus
+	
 	// Main Menu
 	public static void mainMenu(Console con){
 		con.clear();
+		// set screen background to black
 		con.setDrawColor(Color.BLACK);
 		con.fillRect(0,0,1280,720);
+		// load menu and menu options
 		con.println("|--------------------------|");
 		con.println("|Type P to Play Game       |");
 		con.println("|Type V to View Leaderboard|");
@@ -20,6 +23,7 @@ public class CPTAidanTools{
 		con.println("");
 		System.out.println("Menu Loaded");
 	}
+
 	// Help Screen
 	public static void helpScreen(Console con){
 		con.clear();
@@ -34,6 +38,7 @@ public class CPTAidanTools{
 		con.println("");
 		con.println("Type R to Return to the Main Menu");
 	}
+	
 	// Secret Menu
 	public static void secretMenu(Console con){
 		con.clear();
@@ -48,13 +53,16 @@ public class CPTAidanTools{
 		con.println("");
 		con.println("Type R to Return to the Main Menu");
 	}
+
 	// Theme Screen
 	public static void themeScreen(Console con){
 		con.println("Select and type out a theme:");
 		con.println("");
+		// open themes.txt
 		TextInputFile themes = new TextInputFile("themes.txt");
 		System.out.println("Opened themes.txt");
 		String strTheme;
+		// read and print each line
 		while(themes.eof() == false){
 			strTheme = themes.readLine();
 			con.println(strTheme);
@@ -62,14 +70,17 @@ public class CPTAidanTools{
 		themes.close();
 		System.out.println("Closed themes.txt");
 	}
+	
 	// Win Screen
 	public static void winScreen(Console con){
+		// show win screen
 		BufferedImage imgWin = con.loadImage("Win_Black_Screen.png");
 		con.drawImage(imgWin, 0, 0);
 	}
 	
 	// Lose Screen
 	public static void loseScreen(Console con){
+		// show lose screen
 		BufferedImage imgLose = con.loadImage("Lose_Black_Screen.png");
 		con.drawImage(imgLose, 0, 0);
 	}
@@ -79,9 +90,12 @@ public class CPTAidanTools{
 		int intLength = 0;
 		int intLengthRand;
 		int intTimeRand;
+		// show "no more words" screen
 		BufferedImage imgNoWords = con.loadImage("No_More_Words_Screen.png");
 		con.drawImage(imgNoWords, 0, 0);
+		// print game logo
 		gameLogo(con);
+		// print loading bar animation
 		con.setDrawColor(Color.WHITE);
 		con.println("");
 		while(intLength <= 1350){
@@ -100,17 +114,20 @@ public class CPTAidanTools{
 		int intLength = 0;
 		int intLengthRand;
 		int intTimeRand;
+		// print loading screen
 		BufferedImage imgLoad = con.loadImage("Loading_Screen.png");
 		con.drawImage(imgLoad, 0, 0);
+		// print game logo
 		gameLogo(con);
+		// print loading bar animation
 		con.setDrawColor(Color.WHITE);
 		con.println("");
 		while(intLength <= 1350){
 			con.fillRect(0,600,intLength,12);
-			intLengthRand = (int)(Math.random() * 61 + 30);
+			intLengthRand = (int)(Math.random() * 31 + 25);
 			intLength = intLength + intLengthRand;
 			con.println("");
-			intTimeRand = (int)(Math.random() * 301 + 150);
+			intTimeRand = (int)(Math.random() * 101 + 50);
 			con.sleep(intTimeRand);
 		}
 		con.println("");
@@ -118,6 +135,7 @@ public class CPTAidanTools{
 	
 	// Game Logo
 	public static void gameLogo(Console con){
+		// print game logo
 		BufferedImage imgLogo = con.loadImage("New_Game_Logo.png");
 		con.drawImage(imgLogo, 1180, 0);
 	}
@@ -220,9 +238,13 @@ public class CPTAidanTools{
 		return strThemeName;
 	}
 	
-	// Game Summary
-	public static void gameSummary(Console con, String strName, int intWins, String strTheme){
+	// Quit Screen
+	public static void quitScreen(Console con, String strName, int intWins, String strTheme){
 		con.clear();
+		// print quit screen
+		BufferedImage imgQuit = con.loadImage("Quit_Screen.png");
+		con.drawImage(imgQuit, 0, 0);
+		// if the user enters a theme, print name, wins, and last played theme
 		if(!strTheme.equalsIgnoreCase("")){
 			System.out.println("Quit Screen 1");
 			con.println("Game Summary");
@@ -233,9 +255,12 @@ public class CPTAidanTools{
 			con.println("");
 			con.println("Thank you for playing");
 		}else{
+			// if the user does not enter a theme, only print "Thank you for playing"
 			System.out.println("Quit Screen 2");
 			con.println("Thank you for playing");
-		} 
+		}
+		con.sleep(5000);
+		con.closeConsole();
 	}
 	
 	// Hangman Drawings 1-7

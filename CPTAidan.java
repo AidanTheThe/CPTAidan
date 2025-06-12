@@ -35,7 +35,7 @@ public class CPTAidan{
 		String strGuess;
 		int intWordNum = 0;
 		
-		// While loop that encases all code excluding startup menu and some variables
+		// while loop that encases all code excluding startup menu and some variables
 		while(blnGameOver == false){
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0,0,1280,720);
@@ -43,7 +43,7 @@ public class CPTAidan{
 			CPTAidanTools.mainMenu(con);
 			strMode = con.readLine();
 			con.clear();
-			// User enters name and selects theme
+			// user enters name and selects theme
 			if(strMode.equalsIgnoreCase("p")){
 				con.clear();
 				CPTAidanTools.loadingScreen(con);
@@ -62,7 +62,7 @@ public class CPTAidan{
 				strThemetxt = strTheme + ".txt";
 				System.out.println(strThemetxt);
 				
-				// Counting how many words are in the theme file
+				// counting how many words are in the theme file
 				TextInputFile theme = new TextInputFile(strThemetxt);
 				intWordCount = 0;
 				while(theme.eof() == false){
@@ -296,9 +296,9 @@ public class CPTAidan{
 					strMode = con.readLine();
 				}
 			}else if(strMode.equalsIgnoreCase("q")){
-				// print game summary
-				CPTAidanTools.gameSummary(con, strName, intWins, strTheme);
+				// print quit screen
 				blnGameOver = true;
+				CPTAidanTools.quitScreen(con, strName, intWins, strTheme);		
 			}else if(strMode.equalsIgnoreCase("h")){
 				// print help screen
 				CPTAidanTools.helpScreen(con);
